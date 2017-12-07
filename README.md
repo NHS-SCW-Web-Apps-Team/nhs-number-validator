@@ -122,3 +122,4 @@ npm publish
 # Bower is published automatically using Git tags, so don't worry about that
 git checkout develop
 ```
+ 
