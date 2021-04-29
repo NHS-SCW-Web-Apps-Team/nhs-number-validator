@@ -23,7 +23,7 @@ function validate(nhsNumber){
     nan: "numbers only",
     length:"wrong length",
     lenshort:"too short should be 10 characters",
-    lengLong:"too long should be 10 characters",
+    lenLong:"too long should be 10 characters",
     checkdigit: "checkdigit"
 };
 
