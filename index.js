@@ -13,7 +13,7 @@ if(typeof window !== 'undefined'){
 /**
  * Validate an NHS number
  * @param {Number,  String} nhsNumber The NHS number to validate. This may be a String or a number.
- * @returns {Boolean} `true` IFF the NHS number validates, else `false`
+ * @returns {"valid":{Boolean},"error":{message}} `true` IFF the NHS number validates, else `false`
  **/
 function validate(nhsNumber){
 
