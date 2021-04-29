@@ -16,15 +16,50 @@ if(typeof window !== 'undefined'){
  * @returns {Boolean} `true` IFF the NHS number validates, else `false`
  **/
 function validate(nhsNumber){
+
+  var errormessages = {
+    // These are the defaults.
+    empty: "empty",
+    nan: "numbers only",
+    length:"wrong length",
+    lenshort:"too short should be 10 characters",
+    lengLong:"too long should be 10 characters",
+    checkdigit: "checkdigit"
+};
+
   // pre-flight checks
-  if(
+ /* if(
     nhsNumber === undefined ||
     nhsNumber === null ||
     isNaN(Number(nhsNumber)) ||
     nhsNumber.toString().length !== 10
   ){
     return false;
-  }
+  }*/
+  //checkif empty
+  if (nhsNumber === undefined || nhsNumber === null || nhsNumber === ""){
+    return {valid:false, error:errormessages.empty};
+    }
+  
+  //make sure no spaces
+  nhsNumber = nhsNumber.replace(/\s+/g, '');
+  //check if not a number  
+  if(isNaN(Number(nhsNumber))){
+    return {valid:false, error:errormessages.nan};
+    }
+// check if short
+  if(nhsNumber.toString().length < 10){
+      return {valid:false, error:errormessages.lenshort};
+     }  
+// check if long
+  if(nhsNumber.toString().length > 10){
+      return {valid:false, error:errormessages.lenlong};
+    }  
+
+  //check length 
+  if(nhsNumber.toString().length !== 10){
+     return {valid:false, error:errormessages.length};
+    }  
 
   // convert numbers to strings, for internal consistency
   if(Number.isInteger(nhsNumber)){
@@ -49,7 +84,11 @@ function validate(nhsNumber){
   var providedCheckDigit = nhsNumberAsArray[9];
 
   // Do the check digits match?
-  return checkDigit === Number(providedCheckDigit);
+  if(checkDigit === Number(providedCheckDigit)){
+    return {valid:true} ;
+  }else{
+    return {valid:false,error:errormessages.checkdigit} ;
+  }
 }
 
 /**
