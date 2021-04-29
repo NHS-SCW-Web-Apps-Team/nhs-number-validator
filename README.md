@@ -77,6 +77,10 @@ Any environment which exposes `window` will have the `nhsNumberValidator` variab
 </script>
 ```
 
+##### Outputs
+
+this is modified from the original returns {"valid":{bool}, "error":{message} }
+the messages can be modified
 
 ## Contributing
 
